@@ -9,7 +9,6 @@ public class Main {
     public static void main(String[] args) throws Exception{
         // Optional, if not specified, WebDriver will search your path for chromedriver.
         System.setProperty("webdriver.chrome.driver", "chromedriver");
-
         driver= new ChromeDriver();
         String Filetype="doc";
         String SearchTags="武汉大学 试卷";
@@ -19,6 +18,7 @@ public class Main {
         driver.get(url);
 
         int count=ResultCount.get(driver);
+        if(count>1000)count=1000;//谷歌似乎不会返回超过1000条结果
         Map<String, Object> result = new HashMap<>();
         for(;start<count;start+=ResultCount.Num){
             url="https://www.google.com.hk/search?safe=strict&q=filetype:"+ Filetype +"+"+ SearchTags +"&cad=h&start="+start+"&num="+ResultCount.Num;
