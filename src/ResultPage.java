@@ -1,4 +1,5 @@
-import com.sun.org.apache.regexp.internal.RE;
+import com.mongodb.BasicDBObject;
+import org.bson.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,13 +19,14 @@ public class ResultPage {
         for(int i=0;i<divs.size();i++) {
             try {
                 String filetype = divs.get(i).findElement(By.tagName("span")).getText();
+                filetype=filetype.replace('[',' ').replace(']',' ');
                 String title = divs.get(i).findElement(By.tagName("a")).getText();
                 String href = divs.get(i).findElement(By.tagName("a")).getAttribute("href");
                 String data_href = divs.get(i).findElement(By.tagName("a")).getAttribute("data-href");
 
-                Map<String, Object> o = new HashMap<String, Object>();
-                o.put("filetype", filetype);
-                o.put("title", title);
+                BsonDocument o = new BsonDocument();
+                o.put("filetype",new BsonString(filetype));
+                o.put("title", new BsonString(title));
 
                 if (href == null) {
                     if (data_href == null) {
@@ -33,9 +35,16 @@ public class ResultPage {
                         result.put(data_href, o);
                     }
                 } else {
-                    result.put(href, o);
+                    result.put("_id",href);
+
                 }
-                System.out.print(href+"\t");
+                BasicDBObject dbObject=new BasicDBObject();
+                dbObject.put("_id",href);
+                dbObject.put("filetype",new BsonString(filetype));
+                dbObject.put("title", new BsonString(title));
+                dbObject.put("SearchTags", new BsonString(Main.SearchTags));
+                mgoDB.insertData( dbObject);
+                System.out.println(href+"\t");
                 System.out.print(o);
             }catch (Exception e){
                 e.printStackTrace();
