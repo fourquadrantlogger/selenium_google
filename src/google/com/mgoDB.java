@@ -1,3 +1,5 @@
+package google.com;
+
 import com.mongodb.DB;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;

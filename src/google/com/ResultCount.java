@@ -1,3 +1,5 @@
+package google.com;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +20,7 @@ public class ResultCount {
 
         Pattern pattern = Pattern.compile(" [0-9,]+ ");
         Matcher matcher = pattern.matcher(allresultStats);
-        List<String> strs=new ArrayList<>();
+        List<String> strs=new ArrayList();
         while (matcher.find()){
             strs.add(matcher.group());
         }

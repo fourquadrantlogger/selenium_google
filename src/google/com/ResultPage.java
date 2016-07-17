@@ -1,3 +1,5 @@
+package google.com;
+
 import com.mongodb.BasicDBObject;
 import org.bson.*;
 import org.openqa.selenium.By;
@@ -14,7 +16,7 @@ import java.util.Map;
 public class ResultPage {
     public static Map<String,Object> get(WebDriver driver,String url){
         driver.get(url);
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap();
         List<WebElement> divs = driver.findElements(By.className("r"));
         for(int i=0;i<divs.size();i++) {
             try {
