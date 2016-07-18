@@ -10,7 +10,12 @@ public class Main {
     static WebDriver driver;
     public static void main(String[] args) throws Exception{
         // Optional, if not specified, WebDriver will search your path for chromedriver.
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
+        String os = System.getProperties().getProperty("os.name");
+        switch (os){
+            case "Mac OS X":System.setProperty("webdriver.chrome.driver", "chromedriver.app");
+            case "Window":System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        }
+        System.setProperty("webdriver.chrome.driver", "chromedriver.app");
         driver= new ChromeDriver();
 
         int start=0;
