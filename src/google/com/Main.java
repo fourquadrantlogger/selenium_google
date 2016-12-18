@@ -12,10 +12,17 @@ public class Main {
         // Optional, if not specified, WebDriver will search your path for chromedriver.
         String os = System.getProperties().getProperty("os.name");
         switch (os){
-            case "Mac OS X":System.setProperty("webdriver.chrome.driver", "chromedriver.app");
-            case "Window":System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+            case "Mac OS X":
+                System.setProperty("webdriver.chrome.driver", "chromedriver.app");
+                break;
+            case "Window":
+                System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+                break;
+            case "Linux":
+                System.setProperty("webdriver.chrome.driver", "chromedriver");
+                break;
         }
-        System.setProperty("webdriver.chrome.driver", "chromedriver.app");
+
         driver= new ChromeDriver();
 
         int start=0;

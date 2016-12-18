@@ -1,4 +1,6 @@
-package meizitu.com;/**
+package meizitu.com;
+
+/**
  * Created by timeloveboy on 16-7-17.
  */
 
